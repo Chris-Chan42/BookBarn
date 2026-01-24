@@ -24,6 +24,16 @@ using (var scope = app.Services.CreateScope())
 
         db.SaveChanges();
     }
+
+    if (!db.Authors.Any())
+    {
+        db.Authors.AddRange(
+            new Authors { Name = "Hunt & Thomas", Bio = "Authors of The Pragmatic Programmer." },
+            new Authors { Name = "Robert C. Martin", Bio = "Known as Uncle Bob, author of Clean Code." },
+            new Authors { Name = "Gamma et al.", Bio = "Gang of Four, authors of Design Patterns." }
+        );
+        db.SaveChanges();
+    }
 }
 
 // Configure the HTTP request pipeline.

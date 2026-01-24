@@ -10,5 +10,6 @@ namespace BookBarn.Models
         }
 
         public DbSet<Book> Books => Set<Book>();
+        public DbSet<Authors> Authors => Set<Authors>();
     }
 }
