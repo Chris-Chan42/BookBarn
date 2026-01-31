@@ -1,21 +1,17 @@
-﻿@model List<BookBarn.Models.Book>
+﻿@model BookListViewModel
 
-<h1>Books</h1>
+<h1>@Model.PageTitle</h1>
 
-<p>This page is now reading real data from the database using EF Core.</p>
+<p>Total books: <strong>@Model.TotalCount</strong></p>
 
-@if (Model == null || Model.Count == 0)
+@if (Model.Books == null || Model.Books.Count == 0)
 {
-    <p><em>No books found.</em></p>
+    <p><em>@Model.EmptyMessage</em></p>
 }
 else
 {
-    <ul>
-        @foreach (var book in Model)
-        {
-            <li>
-                <strong>@book.Title</strong> by @book.Author — $@book.Price
-            </li>
-        }
-    </ul>
+    @foreach (var book in Model.Books)
+    {
+        <partial name="_BookCard" model="book" />
+    }
 }

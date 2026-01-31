@@ -1,5 +1,6 @@
 ﻿using BookBarn.Models;
 using Microsoft.AspNetCore.Mvc;
+using BookBarn.ViewModels;
 
 namespace BookBarn.Controllers
 {
@@ -15,7 +16,16 @@ namespace BookBarn.Controllers
         public IActionResult Index()
         {
             var books = _context.Books.ToList();
-            return View(books);
+
+            var vm = new BookListViewModel
+            {
+                Books = books,
+                PageTitle = "Available Books",
+                TotalCount = books.Count,
+                EmptyMessage = "No books are currently available."
+            };
+
+            return View(vm);
         }
 
         [Route("Books/Info")]
